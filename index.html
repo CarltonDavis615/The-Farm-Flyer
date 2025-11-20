@@ -6,34 +6,29 @@
     <title>Farm Flyer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Custom Text Shadow for legibility on varied backgrounds without boxes */
       .text-shadow-outline {
         text-shadow: 
-          1px 1px 0 #000,
-          -1px 1px 0 #000,
-          1px -1px 0 #000,
-          -1px -1px 0 #000,
-          0px 1px 0 #000,
-          0px -1px 0 #000,
-          -1px 0px 0 #000,
-          1px 0px 0 #000,
-          2px 2px 4px rgba(0,0,0,0.9);
+          1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000,
+          1px 0px 0 #000, -1px 0px 0 #000, 0px 1px 0 #000, 0px -1px 0 #000,
+          2px 2px 4px rgba(0, 0, 0, 0.9);
+      }
+      #map {
+        height: 100vh;
+        width: 100%;
       }
       body {
         background-color: #0f172a; /* Slate 900 */
-        overflow: hidden; /* Prevent scrolling */
+        margin: 0;
+        overflow: hidden;
       }
     </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0"
-  }
-}
-</script>
-</head>
+    
+    <script type="module" src="/index.tsx"></script>
+
+    <script 
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmgKGPPxu2UZTMQxJFgwB3JFeceq5oSAo&libraries=geometry,places,marker" 
+    ></script>
+  </head>
   <body>
     <div id="root"></div>
   </body>
