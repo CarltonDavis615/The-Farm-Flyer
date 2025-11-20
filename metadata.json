@@ -1,0 +1,5 @@
+{
+  "name": "The Farm Flyer",
+  "description": "A meditative, game-like geography exploration tool using Google Earth 3D imagery with asteroid-style physics.",
+  "requestFramePermissions": []
+}
