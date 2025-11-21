@@ -13,7 +13,7 @@ export interface MapState {
   zoom: number;
   tilt: number;
   heading: number;
-  mapTypeId: 'satellite' | 'terrain' | 'hybrid';
+  mapTypeId: string;
 }
 
 export interface SearchResult {
