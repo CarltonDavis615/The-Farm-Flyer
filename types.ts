@@ -1,4 +1,3 @@
-
 export interface Coordinates {
   lat: number;
   lng: number;
@@ -14,7 +13,7 @@ export interface MapState {
   zoom: number;
   tilt: number;
   heading: number;
-  mapTypeId: 'satellite' | 'terrain' | 'hybrid' | 'winter';
+  mapTypeId: 'satellite' | 'terrain' | 'hybrid';
 }
 
 export interface SearchResult {
