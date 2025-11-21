@@ -15,7 +15,7 @@ const MapEngine: React.FC<MapEngineProps> = ({ apiKey }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [mapType, setMapType] = useState<'satellite' | 'winter'>('satellite');
+  const [mapType, setMapType] = useState<'satellite' | 'winter'>('winter');
 
   // Calculate initial zoom for 700 feet
   const INITIAL_ZOOM = getZoomFromAltitude(700);
