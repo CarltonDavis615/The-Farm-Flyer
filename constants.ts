@@ -32,3 +32,14 @@ export const getAltitudeFromZoom = (zoom: number): number => {
 };
 
 export const getZoomFromAltitude = (altitudeFeet: number): number => {
+    // Inverse of above roughly
+    // Clamp to valid range
+    if (altitudeFeet <= 0) return 21;
+    const maxZoom = 22;
+    // scale = alt / 50
+    // 2^(max-zoom) = alt/50
+    // max-zoom = log2(alt/50)
+    // zoom = max - log2(alt/50)
+    const zoom = maxZoom - Math.log2(altitudeFeet / 50);
+    return Math.min(Math.max(zoom, 15), 21);
+};
