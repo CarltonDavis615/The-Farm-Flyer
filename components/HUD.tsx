@@ -70,7 +70,7 @@ const HUD: React.FC<HUDProps> = ({ mapState, onToggleTerrain, onResetHome, onSea
         </div>
       </div>
 
-      {/* Bottom Left: Topography Toggle */}
+      {/* Bottom Left: Winter Map Toggle */}
       <div className="absolute bottom-8 left-8 pointer-events-auto">
         <button
           onClick={onToggleTerrain}
@@ -78,7 +78,7 @@ const HUD: React.FC<HUDProps> = ({ mapState, onToggleTerrain, onResetHome, onSea
         >
            {/* Removed circle icon */}
            <span className="text-sm tracking-widest font-medium text-shadow-outline uppercase">
-             {mapState.mapTypeId === 'satellite' ? 'Topography' : 'Satellite'}
+             {mapState.mapTypeId === 'satellite' ? 'Winter Map' : 'Satellite'}
            </span>
         </button>
       </div>
