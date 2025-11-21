@@ -20,6 +20,50 @@ export const PhysicsConfig = {
   ROTATION_SPEED: 2.0, // Slower rotation
 };
 
+// Winter Map Style (Snowy/clean look)
+export const WINTER_MAP_STYLE = [
+    {
+        "featureType": "all",
+        "elementType": "geometry",
+        "stylers": [{ "color": "#eef2f3" }] // Snow / White landscape
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [{ "color": "#a5bfdd" }] // Icy Blue
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [{ "color": "#ffffff" }] // White roads
+    },
+    {
+        "featureType": "road",
+        "elementType": "geometry.stroke",
+        "stylers": [{ "color": "#cbd5e1" }] // Subtle grey edges
+    },
+    {
+        "featureType": "poi.park",
+        "elementType": "geometry",
+        "stylers": [{ "color": "#e2e6e9" }] // Bare trees (greyish)
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.icon",
+        "stylers": [{ "visibility": "off" }] // Hide icons for cleaner look
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [{ "color": "#64748b" }] // Slate text
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [{ "visibility": "on" }, { "color": "#eef2f3" }, { "weight": 2 }] // Snow halo
+    }
+];
+
 // Mapping zoom levels to intuitive "feet" for display
 // Google Maps Zoom 21 ~ 10 meters/pixel scale roughly. 
 // This is a heuristic for display purposes.
