@@ -45,7 +45,7 @@ const HUD: React.FC<HUDProps> = ({ mapState, onToggleTerrain, onResetHome, onSea
   return (
     <div className="absolute inset-0 pointer-events-none z-50 font-sans text-white">
       
-      {/* Top Left: Coordinates (No Box, No Label, just text) */}
+      {/* Top Left: Coordinates */}
       <div className="absolute top-6 left-6 flex flex-col pointer-events-auto">
         <div className="text-xl font-light tracking-wider opacity-90 text-shadow-outline">
           {formatCoord(mapState.center.lat, 'lat')}
@@ -75,5 +75,47 @@ const HUD: React.FC<HUDProps> = ({ mapState, onToggleTerrain, onResetHome, onSea
           onClick={onToggleTerrain}
           className="group flex items-center space-x-2 opacity-70 hover:opacity-100 transition-opacity duration-200"
         >
-           {/* Removed circle icon */}
-           <span className="text-sm tracking-widest font-medium text
+           <span className="text-sm tracking-widest font-medium text-shadow-outline uppercase">
+             {mapState.mapTypeId === 'satellite' ? 'Topography' : 'Satellite'}
+           </span>
+        </button>
+      </div>
+
+      {/* Bottom Center: Address Search */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 pointer-events-auto">
+        <form onSubmit={handleSearchSubmit} className="relative group">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+             {isSearching ? (
+                 <div className="animate-spin h-3 w-3 border-2 border-cyan-500 rounded-full border-t-transparent"></div>
+             ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 text-white/60 group-focus-within:text-cyan-400 transition-colors">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+             )}
+          </div>
+          <input 
+             type="text" 
+             className="block w-64 pl-10 pr-3 py-1.5 bg-slate-900/60 border border-white/20 rounded-full text-sm placeholder-white/40 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500 focus:border-cyan-500 focus:bg-slate-900/90 transition-all shadow-lg backdrop-blur-sm" 
+             placeholder="Enter location..." 
+             value={searchQuery}
+             onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </form>
+      </div>
+
+      {/* Bottom Right: Return Home */}
+      <div className="absolute bottom-8 right-8 pointer-events-auto">
+        <button
+          onClick={onResetHome}
+          className="group flex items-center space-x-2 opacity-70 hover:opacity-100 transition-opacity duration-200"
+        >
+           <span className="text-sm tracking-widest font-medium text-shadow-outline uppercase">Return to Base</span>
+        </button>
+      </div>
+
+    </div>
+  );
+};
+
+export default HUD;
+// END OF FILE - Check that this line is present!
