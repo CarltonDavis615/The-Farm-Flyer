@@ -1,7 +1,6 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { loadGoogleMapsScript, geocodeAddress } from '../services/googleMapsService';
-import { MapConfig, INITIAL_COORDINATES, getZoomFromAltitude, WINTER_MAP_STYLE } from '../constants';
+import { MapConfig, INITIAL_COORDINATES, getZoomFromAltitude } from '../constants';
 import { MapState, Coordinates } from '../types';
 import HUD from './HUD';
 import Spaceship from './Spaceship';
@@ -15,7 +14,8 @@ const MapEngine: React.FC<MapEngineProps> = ({ apiKey }) => {
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<any>(null);
   const [mapLoaded, setMapLoaded] = useState(false);
-  const [mapType, setMapType] = useState<'satellite' | 'winter'>('winter');
+  // Reverted default to satellite, removed 'winter' type constraint
+  const [mapType, setMapType] = useState('satellite');
 
   // Calculate initial zoom for 700 feet
   const INITIAL_ZOOM = getZoomFromAltitude(700);
@@ -56,10 +56,6 @@ const MapEngine: React.FC<MapEngineProps> = ({ apiKey }) => {
         isFractionalZoomEnabled: true 
       });
 
-      // Register Custom Winter Style
-      const winterType = new (window as any).google.maps.StyledMapType(WINTER_MAP_STYLE, { name: 'Winter' });
-      map.mapTypes.set('winter', winterType);
-
       mapInstanceRef.current = map;
       
       // Pass map instance to physics engine
@@ -73,9 +69,8 @@ const MapEngine: React.FC<MapEngineProps> = ({ apiKey }) => {
     
     mapInstanceRef.current.setMapTypeId(mapType);
     
-    // Update tilt target in the game loop
-    // Winter map (roadmap based) often looks easier to read flat, but 45 is fine too.
-    // We'll stick to default tilt for Satellite, and 0 for Winter to emulate "Map View" clarity.
+    // Update tilt target
+    // Satellite gets tilt for 3D effect, Terrain (Topography) looks better flat (0 tilt)
     if (mapType === 'satellite') {
         setTargetTilt(MapConfig.DEFAULT_TILT);
     } else {
@@ -84,8 +79,8 @@ const MapEngine: React.FC<MapEngineProps> = ({ apiKey }) => {
   }, [mapType, setTargetTilt]);
 
   const handleToggleTerrain = () => {
-    // Toggle between Satellite and Winter
-    const newType = mapType === 'satellite' ? 'winter' : 'satellite';
+    // Toggle between Satellite and standard Terrain (Topography)
+    const newType = mapType === 'satellite' ? 'terrain' : 'satellite';
     setMapType(newType);
   };
 
